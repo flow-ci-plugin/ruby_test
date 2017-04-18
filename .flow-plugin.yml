@@ -2,7 +2,7 @@
 name: ruby_test
 version: 0.0.1
 language: ruby
-description: "
+description: |"
   使用 bundle exec rake 指令进行测试
 
   ### 注意事项
