@@ -2,10 +2,38 @@
 name: ruby_test
 version: 0.0.1
 language: ruby
-description: "使用 bundle exec rake 指令进行测试
+description: <<-EOF
+使用 `bundle exec rake` 指令进行测试
+
 - 注意事项
-如您在测试中使用了数据库，请在此之前添加对应对数据库插件，或者使用自定义脚本自行安装数据库。您可能需要在项目中引用对应的环境变量
-- 如果您使用了数据库，请根据您的项目确定是否需要使用自定义脚本执行 RAILS_ENV=test bundle exec rake db:migrate 命令"
+
+如您在测试中使用了数据库，请在此之前添加对应对数据库插件，或者使用自定义脚本自行安装数据库。您可能需要在项目中引用对应的环境变量，下面是一个典型的例子。
+
+```ruby
+
+default: &default
+
+  adapter: mysql2
+
+  encoding: utf8
+
+  pool: 50
+
+  username: root
+
+
+test:
+
+  <<: *default
+
+  database: flow_test
+
+  password: <\%=ENV['FLOW_DATABASE_MYSQL_PWD'] %>
+
+```
+
+- 如果您使用了数据库，请根据您的项目确定是否需要使用自定义脚本执行 `RAILS_ENV=test bundle exec rake db:migrate` 命令
+EOF
 public: true
 tags:
   - ruby
